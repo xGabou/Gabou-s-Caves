@@ -292,7 +292,8 @@ public class ACItemRegistry {
     }
 
     private static void spawnEgg(String entityName, RegistryObject type, int color1, int color2, ResourceKey<Biome> biomeTab) {
-        RegistryObject<Item> item = DEF_REG.register("spawn_egg_" + entityName, () -> new ForgeSpawnEggItem(type, color1, color2, new Item.Properties()));
+        // Keep spawn egg ids stable, but register inert items so they can no longer create mobs.
+        RegistryObject<Item> item = DEF_REG.register("spawn_egg_" + entityName, () -> new Item(new Item.Properties()));
         creativeTabSpawnEggMap.put(item, biomeTab);
     }
 

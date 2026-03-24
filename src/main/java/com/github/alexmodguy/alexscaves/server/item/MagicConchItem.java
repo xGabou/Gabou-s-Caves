@@ -33,10 +33,13 @@ public class MagicConchItem extends Item {
     }
 
     public void releaseUsing(ItemStack stack, Level level, LivingEntity player, int useTimeLeft) {
-        level.playSound(null, player, ACSoundRegistry.MAGIC_CONCH_CAST.get(), SoundSource.RECORDS, 16.0F, 1.0F);
         int i = this.getUseDuration(stack) - useTimeLeft;
         boolean hurtRelations = false;
         if (i > 25) {
+            if (ACEntityRegistry.areMobGameplaySystemsDisabled()) {
+                return;
+            }
+            level.playSound(null, player, ACSoundRegistry.MAGIC_CONCH_CAST.get(), SoundSource.RECORDS, 16.0F, 1.0F);
             if(stack.getEnchantmentLevel(ACEnchantmentRegistry.TAXING_BELLOW.get()) > 0){
                 stack.setDamageValue(Math.min(0, stack.getDamageValue() - 1));
                 hurtRelations = true;

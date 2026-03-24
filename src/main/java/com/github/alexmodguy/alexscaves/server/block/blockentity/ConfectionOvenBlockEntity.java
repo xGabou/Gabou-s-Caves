@@ -94,6 +94,10 @@ public class ConfectionOvenBlockEntity extends BlockEntity {
         }
     }
     private void makeGingerbreadMen() {
+        if (ACEntityRegistry.areMobGameplaySystemsDisabled()) {
+            gingerbreadSpawns = 0;
+            return;
+        }
         if(cooldown % spawnIteratesBy == 0 && gingerbreadSpawns > 0){
             GingerbreadManEntity gingerbreadMan = ACEntityRegistry.GINGERBREAD_MAN.get().create(level);
             Direction facing = getBlockState().getValue(ConfectionOvenBlock.FACING);

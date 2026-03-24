@@ -100,24 +100,6 @@
     "misc": [],
     "monster": [
       {
-        "type": "alexscaves:deep_one_mage",
-        "maxCount": 1,
-        "minCount": 1,
-        "weight": 2
-      },
-      {
-        "type": "alexscaves:deep_one_knight",
-        "maxCount": 1,
-        "minCount": 1,
-        "weight": 4
-      },
-      {
-        "type": "alexscaves:deep_one",
-        "maxCount": 1,
-        "minCount": 1,
-        "weight": 8
-      },
-      {
         "type": "minecraft:spider",
         "maxCount": 4,
         "minCount": 4,
@@ -172,22 +154,9 @@
         "maxCount": 6,
         "minCount": 4,
         "weight": 100
-      },
-      {
-        "type": "alexscaves:hullbreaker",
-        "maxCount": 1,
-        "minCount": 1,
-        "weight": 20
       }
     ],
-    "water_ambient": [
-      {
-        "type": "alexscaves:lanternfish",
-        "maxCount": 20,
-        "minCount": 15,
-        "weight": 100
-      }
-    ],
+    "water_ambient": [],
     "water_creature": [
       {
         "type": "minecraft:squid",
@@ -202,26 +171,7 @@
         "weight": 1
       }
     ],
-    "alexscaves:deep_sea_creature": [
-      {
-        "type": "alexscaves:tripodfish",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 40
-      },
-      {
-        "type": "alexscaves:sea_pig",
-        "maxCount": 4,
-        "minCount": 3,
-        "weight": 50
-      },
-      {
-        "type": "alexscaves:gossamer_worm",
-        "maxCount": 1,
-        "minCount": 1,
-        "weight": 20
-      }
-    ]
+    "alexscaves:deep_sea_creature": []
   },
   "temperature": 0.5
 }

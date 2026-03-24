@@ -1,5 +1,6 @@
 package com.github.alexmodguy.alexscaves.server.item;
 
+import com.github.alexmodguy.alexscaves.server.entity.ACEntityRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -33,6 +34,9 @@ public class ModFishBucketItem extends MobBucketItem {
 
     @Override
     public void checkExtraContent(@Nullable Player player, Level level, ItemStack stack, BlockPos pos) {
+        if (ACEntityRegistry.areMobGameplaySystemsDisabled()) {
+            return;
+        }
         if (level instanceof ServerLevel) {
             this.spawnFish((ServerLevel) level, stack, pos);
             level.gameEvent(player, GameEvent.ENTITY_PLACE, pos);

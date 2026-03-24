@@ -35,6 +35,9 @@ public class NaturalSpawnerMixin {
             at = @At(value = "TAIL")
     )
     private static void ac_spawnMobsForChunkGeneration(ServerLevelAccessor level, Holder<Biome> surfaceBiome, ChunkPos chunkPos, RandomSource randomSource, CallbackInfo ci) {
+        if (ACEntityRegistry.areMobGameplaySystemsDisabled()) {
+            return;
+        }
         Holder<Biome> caveBiome = getCaveCreaturesBiome(level, chunkPos, randomSource);
         if (caveBiome != null) {
             MobSpawnSettings mobspawnsettings = caveBiome.value().getMobSettings();

@@ -83,6 +83,9 @@ public class VolcanicCoreBlockEntity extends BlockEntity {
     }
 
     public boolean spawnBoss(){
+        if (ACEntityRegistry.areMobGameplaySystemsDisabled()) {
+            return false;
+        }
         if(bossSpawnCooldown > 0){
             return false;
         }else{

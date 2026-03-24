@@ -163,7 +163,7 @@ public class LicowitchAttackGoal extends Goal {
 
     private void hexAttack(LivingEntity target) {
         licowitch.lookAt(target, 180.0F, 30.0F);
-        boolean summonSpace = licowitch.getPossessedUUIDs().size() < 3;
+        boolean summonSpace = !ACEntityRegistry.areMobGameplaySystemsDisabled() && licowitch.getPossessedUUIDs().size() < 3;
         boolean flag = false;
         if (summonSpace && licowitch.getRandom().nextBoolean()) {
             Vec3 summonSpot = findSummonSpot(target, 10);

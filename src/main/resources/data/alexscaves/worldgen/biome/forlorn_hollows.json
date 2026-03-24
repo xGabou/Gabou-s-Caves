@@ -115,28 +115,9 @@
     ]
   ],
   "precipitation": "rain",
-  "spawn_costs": {
-    "alexscaves:underzealot": {
-      "charge": 0.4,
-      "energy_budget": 0.1
-    },
-    "alexscaves:corrodent": {
-      "charge": 0.4,
-      "energy_budget": 0.1
-    },
-    "alexscaves:vesper": {
-      "charge": 0.25,
-      "energy_budget": 0.1
-    }
-  },
+  "spawn_costs": {},
   "spawners": {
     "ambient": [
-      {
-        "type": "alexscaves:gloomoth",
-        "maxCount": 4,
-        "minCount": 4,
-        "weight": 20
-      },
       {
         "type": "minecraft:bat",
         "maxCount": 8,
@@ -147,26 +128,7 @@
     "axolotls": [],
     "creature": [],
     "misc": [],
-    "monster": [
-      {
-        "type": "alexscaves:underzealot",
-        "maxCount": 1,
-        "minCount": 1,
-        "weight": 100
-      },
-      {
-        "type": "alexscaves:corrodent",
-        "maxCount": 4,
-        "minCount": 3,
-        "weight": 90
-      },
-      {
-        "type": "alexscaves:vesper",
-        "maxCount": 3,
-        "minCount": 2,
-        "weight": 60
-      }
-    ],
+    "monster": [],
     "underground_water_creature": [],
     "water_ambient": [],
     "water_creature": []

@@ -106,6 +106,9 @@ public class DinosaurEggBlock extends Block {
     }
 
     public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
+        if (com.github.alexmodguy.alexscaves.server.entity.ACEntityRegistry.areMobGameplaySystemsDisabled()) {
+            return;
+        }
         if (this.canGrow(worldIn, worldIn.getBlockState(pos.below())) && canHatchAt(worldIn, pos) && (!state.getValue(NEEDS_PLAYER) || worldIn.getNearestPlayer(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, 15, EntitySelector.NO_SPECTATORS) != null)) {
             int i = state.getValue(HATCH);
             if (i < 2) {

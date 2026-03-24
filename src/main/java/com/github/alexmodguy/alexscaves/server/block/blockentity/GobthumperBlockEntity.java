@@ -48,6 +48,9 @@ public class GobthumperBlockEntity extends BlockEntity {
             level.addAlwaysVisibleParticle(ACParticleRegistry.GOBTHUMPER.get(), true, this.getBlockPos().getX() + 0.5F, this.getBlockPos().getY() + 0.15F, this.getBlockPos().getZ() + 0.5F, particleColor, 0, 0);
             particleColor = (particleColor + 1) % 3;
         }else{
+            if (ACEntityRegistry.areMobGameplaySystemsDisabled()) {
+                return;
+            }
             if(this.summonedWormId != -1 && level.getEntity(this.summonedWormId) instanceof GumWormEntity gumWorm && gumWorm.isAlive()){
                 gumWorm.setGobthumperPos(this.getBlockPos());
             }else{

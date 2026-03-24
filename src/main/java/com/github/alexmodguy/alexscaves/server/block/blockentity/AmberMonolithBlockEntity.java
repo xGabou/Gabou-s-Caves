@@ -49,6 +49,11 @@ public class AmberMonolithBlockEntity extends BlockEntity {
     }
 
     public static void tick(Level level, BlockPos blockPos, BlockState state, AmberMonolithBlockEntity entity) {
+        if (ACEntityRegistry.areMobGameplaySystemsDisabled()) {
+            entity.spawnType = null;
+            entity.spawnCount = 0;
+            return;
+        }
         entity.tickCount++;
         entity.previousRotation = entity.rotation;
         entity.rotation += 1F;

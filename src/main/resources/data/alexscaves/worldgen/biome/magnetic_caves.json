@@ -111,20 +111,9 @@
     ]
   ],
   "precipitation": "rain",
-  "spawn_costs": {
-    "alexscaves:magnetron": {
-      "charge": 1.0,
-      "energy_budget": 0.1
-    }
-  },
+  "spawn_costs": {},
   "spawners": {
     "ambient": [
-      {
-        "type": "alexscaves:notor",
-        "maxCount": 4,
-        "minCount": 1,
-        "weight": 20
-      },
       {
         "type": "minecraft:bat",
         "maxCount": 8,
@@ -136,30 +125,6 @@
     "creature": [],
     "misc": [],
     "monster": [
-      {
-        "type": "alexscaves:magnetron",
-        "maxCount": 1,
-        "minCount": 1,
-        "weight": 80
-      },
-      {
-        "type": "alexscaves:teletor",
-        "maxCount": 1,
-        "minCount": 1,
-        "weight": 225
-      },
-      {
-        "type": "alexscaves:boundroid",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 350
-      },
-      {
-        "type": "alexscaves:ferrouslime",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 200
-      },
       {
         "type": "minecraft:spider",
         "maxCount": 4,

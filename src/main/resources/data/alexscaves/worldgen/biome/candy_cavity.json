@@ -113,80 +113,18 @@
     ]
   ],
   "precipitation": "rain",
-  "spawn_costs": {
-    "alexscaves:caniac": {
-      "charge": 1.1,
-      "energy_budget": 0.3
-    },
-    "alexscaves:gumbeeper": {
-      "charge": 1.0,
-      "energy_budget": 0.3
-    },
-    "alexscaves:gum_worm": {
-      "charge": 1.2,
-      "energy_budget": 0.2
-    },
-    "alexscaves:caramel_cube": {
-      "charge": 0.9,
-      "energy_budget": 0.15
-    }
-  },
+  "spawn_costs": {},
   "creature_spawn_probability": 0.04,
   "spawners": {
     "ambient": [],
     "axolotls": [],
     "creature": [],
     "misc": [],
-    "monster": [
-      {
-        "type": "alexscaves:caniac",
-        "maxCount": 1,
-        "minCount": 1,
-        "weight": 100
-      },
-      {
-        "type": "alexscaves:gumbeeper",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 100
-      },
-      {
-        "type": "alexscaves:gum_worm",
-        "maxCount": 1,
-        "minCount": 1,
-        "weight": 80
-      },
-      {
-        "type": "alexscaves:caramel_cube",
-        "maxCount": 3,
-        "minCount": 2,
-        "weight": 40
-      }
-    ],
+    "monster": [],
     "underground_water_creature": [],
-    "water_ambient": [
-      {
-        "type": "alexscaves:sweetish_fish",
-        "maxCount": 3,
-        "minCount": 1,
-        "weight": 10
-      }
-    ],
+    "water_ambient": [],
     "water_creature": [],
-    "alexscaves:cave_creature": [
-      {
-        "type": "alexscaves:candicorn",
-        "maxCount": 6,
-        "minCount": 4,
-        "weight": 100
-      },
-      {
-        "type": "alexscaves:gummy_bear",
-        "maxCount": 3,
-        "minCount": 1,
-        "weight": 100
-      }
-    ]
+    "alexscaves:cave_creature": []
   },
   "temperature": 0.7
 }
