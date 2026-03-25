@@ -19,7 +19,7 @@ public class OceanTrenchStructure extends AbstractCaveGenerationStructure {
     public static final Codec<OceanTrenchStructure> CODEC = simpleCodec((settings) -> new OceanTrenchStructure(settings));
 
     public OceanTrenchStructure(StructureSettings settings) {
-        super(settings, ACBiomeRegistry.ABYSSAL_CHASM);
+        super(settings, ACBiomeRegistry.ABYSSAL_CHASM, ACStructureRegistry.OCEAN_TRENCH.getId());
     }
 
     @Override

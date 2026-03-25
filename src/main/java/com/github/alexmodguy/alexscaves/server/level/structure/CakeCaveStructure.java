@@ -21,7 +21,7 @@ public class CakeCaveStructure extends AbstractCaveGenerationStructure {
     public static final Codec<CakeCaveStructure> CODEC = simpleCodec((settings) -> new CakeCaveStructure(settings));
 
     public CakeCaveStructure(StructureSettings settings) {
-        super(settings, ACBiomeRegistry.CANDY_CAVITY);
+        super(settings, ACBiomeRegistry.CANDY_CAVITY, ACStructureRegistry.CAKE_CAVE.getId());
     }
 
     @Override

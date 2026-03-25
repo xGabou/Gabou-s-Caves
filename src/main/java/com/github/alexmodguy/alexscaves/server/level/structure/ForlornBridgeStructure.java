@@ -1,5 +1,6 @@
 package com.github.alexmodguy.alexscaves.server.level.structure;
 
+import com.github.alexmodguy.alexscaves.server.config.BiomeContentConfig;
 import com.github.alexmodguy.alexscaves.server.level.biome.ACBiomeRegistry;
 import com.github.alexmodguy.alexscaves.server.level.structure.piece.ForlornBridgeStructurePiece;
 import com.github.alexmodguy.alexscaves.server.misc.ACMath;
@@ -32,6 +33,9 @@ public class ForlornBridgeStructure extends Structure {
     }
 
     public Optional<GenerationStub> findGenerationPoint(Structure.GenerationContext context) {
+        if (!BiomeContentConfig.isStructureAllowed(context.biomeSource(), ACBiomeRegistry.FORLORN_HOLLOWS, ACStructureRegistry.FORLORN_BRIDGE.getId())) {
+            return Optional.empty();
+        }
         return atYCaveBiomePoint(context, Heightmap.Types.OCEAN_FLOOR_WG, (builder) -> {
             this.generatePieces(builder, context);
         });

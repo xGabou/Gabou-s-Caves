@@ -1,6 +1,7 @@
 package com.github.alexmodguy.alexscaves.mixin;
 
 import com.github.alexmodguy.alexscaves.AlexsCaves;
+import com.github.alexmodguy.alexscaves.server.config.BiomeContentConfig;
 import com.github.alexmodguy.alexscaves.server.entity.ACEntityRegistry;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -35,9 +36,6 @@ public class NaturalSpawnerMixin {
             at = @At(value = "TAIL")
     )
     private static void ac_spawnMobsForChunkGeneration(ServerLevelAccessor level, Holder<Biome> surfaceBiome, ChunkPos chunkPos, RandomSource randomSource, CallbackInfo ci) {
-        if (ACEntityRegistry.areMobGameplaySystemsDisabled()) {
-            return;
-        }
         Holder<Biome> caveBiome = getCaveCreaturesBiome(level, chunkPos, randomSource);
         if (caveBiome != null) {
             MobSpawnSettings mobspawnsettings = caveBiome.value().getMobSettings();
@@ -114,7 +112,7 @@ public class NaturalSpawnerMixin {
             int height = level.getMinBuildHeight() + Math.round(heightRange * random.nextFloat());
             mutableBlockPos.setY(height);
             Holder<Biome> holder = level.getBiome(mutableBlockPos);
-            if (!holder.get().getMobSettings().getMobs(ACEntityRegistry.CAVE_CREATURE).isEmpty() && !cavesWithCreatures.contains(holder)) {
+            if (!holder.get().getMobSettings().getMobs(ACEntityRegistry.CAVE_CREATURE).isEmpty() && BiomeContentConfig.isBiomeMobSpawnAllowed(level, mutableBlockPos) && !cavesWithCreatures.contains(holder)) {
                 cavesWithCreatures.add(holder);
             }
         }

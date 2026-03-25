@@ -3,6 +3,7 @@ package com.github.alexmodguy.alexscaves.server.event;
 import com.github.alexmodguy.alexscaves.AlexsCaves;
 import com.github.alexmodguy.alexscaves.server.block.ACBlockRegistry;
 import com.github.alexmodguy.alexscaves.server.block.fluid.ACFluidRegistry;
+import com.github.alexmodguy.alexscaves.server.config.BiomeContentConfig;
 import com.github.alexmodguy.alexscaves.server.enchantment.ACEnchantmentRegistry;
 import com.github.alexmodguy.alexscaves.server.entity.ACEntityRegistry;
 import com.github.alexmodguy.alexscaves.server.entity.ACFrogRegistry;
@@ -70,7 +71,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -256,14 +256,6 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
-    public void onEntityJoinLevel(EntityJoinLevelEvent event) {
-        // Keep entity ids registered, but stop custom mobs from ever entering the world.
-        if (ACEntityRegistry.isDisabledMob(event.getEntity())) {
-            event.setCanceled(true);
-        }
-    }
-
-    @SubscribeEvent
     public void onEntityJoinWorld(MobSpawnEvent.FinalizeSpawn event) {
         try {
             if (event.getEntity() instanceof Creeper creeper) {
@@ -352,6 +344,7 @@ public class CommonEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onServerAboutToStart(ServerAboutToStartEvent event) {
         ACBiomeRarity.init();
+        BiomeContentConfig.reloadConfig();
         //moved from citadel
         RegistryAccess registryAccess = event.getServer().registryAccess();
         Registry<Biome> allBiomes = registryAccess.registryOrThrow(Registries.BIOME);
@@ -365,6 +358,7 @@ public class CommonEvents {
             Optional<Holder.Reference<LevelStem>> holderOptional = levelStems.getHolder(levelStemResourceKey);
             if (holderOptional.isPresent() && holderOptional.get().value().generator().getBiomeSource() instanceof BiomeSourceAccessor expandedBiomeSource) {
                 expandedBiomeSource.setResourceKeyMap(biomeMap);
+                expandedBiomeSource.setAssignedDimension(levelStemResourceKey.location());
                 if (levelStemResourceKey.equals(LevelStem.OVERWORLD)) {
                     ImmutableSet.Builder<Holder<Biome>> biomeHolders = ImmutableSet.builder();
                     for (ResourceKey<Biome> biomeResourceKey : ACBiomeRegistry.ALEXS_CAVES_BIOMES) {

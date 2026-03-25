@@ -1,5 +1,6 @@
 package com.github.alexmodguy.alexscaves.server.level.structure;
 
+import com.github.alexmodguy.alexscaves.server.config.BiomeContentConfig;
 import com.github.alexmodguy.alexscaves.server.level.biome.ACBiomeRegistry;
 import com.github.alexmodguy.alexscaves.server.level.structure.piece.DonutArchStructurePiece;
 import com.github.alexmodguy.alexscaves.server.level.structure.piece.ForlornBridgeStructurePiece;
@@ -31,6 +32,9 @@ public class DonutArchStructure extends Structure {
     }
 
     public Optional<GenerationStub> findGenerationPoint(GenerationContext context) {
+        if (!BiomeContentConfig.isStructureAllowed(context.biomeSource(), ACBiomeRegistry.CANDY_CAVITY, ACStructureRegistry.DONUT_ARCH.getId())) {
+            return Optional.empty();
+        }
         return atYCaveBiomePoint(context, Heightmap.Types.OCEAN_FLOOR_WG, (builder) -> {
             this.generatePieces(builder, context);
         });

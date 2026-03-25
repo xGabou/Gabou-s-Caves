@@ -28,6 +28,7 @@
     "MultiNoiseBiomeSourceMixin",
     "NaturalSpawnerMixin",
     "OceanMonumentStructureMixin",
+    "PlacedFeatureMixin",
     "PlayerMixin",
     "PotionUtilsMixin",
     "SeagrassFeatureMixin",

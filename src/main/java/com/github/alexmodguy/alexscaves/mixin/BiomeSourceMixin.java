@@ -5,6 +5,7 @@ import com.google.common.base.Suppliers;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSource;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,6 +23,7 @@ public class BiomeSourceMixin implements BiomeSourceAccessor {
     public Supplier<Set<Holder<Biome>>> possibleBiomes;
     private boolean expanded;
     private Map<ResourceKey<Biome>, Holder<Biome>> map = new HashMap<>();
+    private ResourceLocation assignedDimension;
 
     @Override
     public void setResourceKeyMap(Map<ResourceKey<Biome>, Holder<Biome>> map) {
@@ -42,6 +44,16 @@ public class BiomeSourceMixin implements BiomeSourceAccessor {
             possibleBiomes = Suppliers.memoize(builder::build);
             expanded = true;
         }
+    }
+
+    @Override
+    public void setAssignedDimension(ResourceLocation assignedDimension) {
+        this.assignedDimension = assignedDimension;
+    }
+
+    @Override
+    public ResourceLocation getAssignedDimension() {
+        return assignedDimension;
     }
 
 }

@@ -17,7 +17,7 @@ public class AcidPitStructure extends AbstractCaveGenerationStructure {
     public static final Codec<AcidPitStructure> CODEC = simpleCodec((settings) -> new AcidPitStructure(settings));
 
     public AcidPitStructure(StructureSettings settings) {
-        super(settings, ACBiomeRegistry.TOXIC_CAVES);
+        super(settings, ACBiomeRegistry.TOXIC_CAVES, ACStructureRegistry.ACID_PIT.getId());
     }
 
     @Override

@@ -14,6 +14,8 @@ buildscript {
 
 plugins {
     id 'org.parchmentmc.librarian.forgegradle' version '1.+' apply false
+    id 'com.matthewprenger.cursegradle' version '1.4.0' // CurseForge uploader
+    id "com.modrinth.minotaur" version "2.8.10" // Modrinth uploader
 }
 
 apply plugin: 'net.minecraftforge.gradle'
@@ -157,6 +159,55 @@ publishing {
     repositories {
         maven {
             url "file:///${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+def modrinthToken = System.getenv("MODRINTH_TOKEN")?.trim()
+def curseforgeToken = System.getenv("CURSEFORGE_TOKEN")?.trim()
+
+if (modrinthToken) {
+    modrinth {
+        token = modrinthToken
+        projectId = "jy6rOgrU" // from your Modrinth project URL
+        versionNumber = "Forge-${project.version}"
+        versionName = "GabousCaves ${version}"
+        changelog = rootProject.file("docs/public/GabousCavesChangelog.md").text
+        gameVersions = ["1.20.1"]
+        loaders = ["forge"]
+        versionType = "release"
+        dependencies {
+        }
+        uploadFile = file("build/libs/${archivesBaseName}-${version}.jar")
+    }
+} else {
+    logger.lifecycle("Skipping Modrinth config for ${project.path}: MODRINTH_TOKEN is not set.")
+    tasks.configureEach {
+        if (name.toLowerCase().contains("modrinth")) {
+            enabled = false
+        }
+    }
+}
+
+if (curseforgeToken) {
+    curseforge {
+        apiKey = curseforgeToken
+
+        project {
+            id = "1494710"
+            changelog = rootProject.file("docs/public/GabousCavesChangelog.md")
+            releaseType = "release" // options: alpha, beta, release
+            addGameVersion "1.20.1"
+            addGameVersion "Forge"
+            mainArtifact(file("build/libs/${archivesBaseName}-${version}.jar")) {
+                displayName = "Forge-${version}"
+            }
+        }
+    }
+} else {
+    logger.lifecycle("Skipping CurseForge config for ${project.path}: CURSEFORGE_TOKEN is not set.")
+    tasks.configureEach {
+        if (name.toLowerCase().contains("curseforge")) {
+            enabled = false
         }
     }
 }

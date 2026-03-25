@@ -10,6 +10,7 @@ import com.github.alexmodguy.alexscaves.server.block.blockentity.ACBlockEntityRe
 import com.github.alexmodguy.alexscaves.server.block.fluid.ACFluidRegistry;
 import com.github.alexmodguy.alexscaves.server.block.poi.ACPOIRegistry;
 import com.github.alexmodguy.alexscaves.server.config.ACServerConfig;
+import com.github.alexmodguy.alexscaves.server.config.BiomeContentConfig;
 import com.github.alexmodguy.alexscaves.server.config.BiomeGenerationConfig;
 import com.github.alexmodguy.alexscaves.server.enchantment.ACEnchantmentRegistry;
 import com.github.alexmodguy.alexscaves.server.entity.ACEntityDataRegistry;
@@ -134,10 +135,12 @@ public class AlexsCaves {
 
     private void loadConfig(final ModConfigEvent.Loading event) {
         BiomeGenerationConfig.reloadConfig();
+        BiomeContentConfig.reloadConfig();
     }
 
     private void reloadConfig(final ModConfigEvent.Reloading event) {
         BiomeGenerationConfig.reloadConfig();
+        BiomeContentConfig.reloadConfig();
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

@@ -18,7 +18,7 @@ public class ForlornCanyonStructure extends AbstractCaveGenerationStructure {
     public static final Codec<ForlornCanyonStructure> CODEC = simpleCodec((settings) -> new ForlornCanyonStructure(settings));
 
     public ForlornCanyonStructure(StructureSettings settings) {
-        super(settings, ACBiomeRegistry.FORLORN_HOLLOWS);
+        super(settings, ACBiomeRegistry.FORLORN_HOLLOWS, ACStructureRegistry.FORLORN_CANYON.getId());
     }
 
     @Override

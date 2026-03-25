@@ -1,10 +1,12 @@
 package com.github.alexmodguy.alexscaves.server.level.structure;
 
+import com.github.alexmodguy.alexscaves.server.config.BiomeContentConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.QuartPos;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSource;
@@ -19,13 +21,18 @@ import java.util.function.Consumer;
 public abstract class AbstractCaveGenerationStructure extends Structure {
 
     private final ResourceKey<Biome> matchingBiome;
+    private final ResourceLocation structureId;
 
-    protected AbstractCaveGenerationStructure(StructureSettings settings, ResourceKey<Biome> matchingBiome) {
+    protected AbstractCaveGenerationStructure(StructureSettings settings, ResourceKey<Biome> matchingBiome, ResourceLocation structureId) {
         super(settings);
         this.matchingBiome = matchingBiome;
+        this.structureId = structureId;
     }
 
     public Optional<GenerationStub> findGenerationPoint(Structure.GenerationContext context) {
+        if (!BiomeContentConfig.isStructureAllowed(context.biomeSource(), matchingBiome, structureId)) {
+            return Optional.empty();
+        }
         return atYCaveBiomePoint(context, Heightmap.Types.OCEAN_FLOOR_WG, (builder) -> {
             this.generatePieces(builder, context);
         });

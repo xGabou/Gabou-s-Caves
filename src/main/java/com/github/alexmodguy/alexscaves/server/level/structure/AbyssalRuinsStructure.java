@@ -1,6 +1,8 @@
 package com.github.alexmodguy.alexscaves.server.level.structure;
 
 import com.github.alexmodguy.alexscaves.AlexsCaves;
+import com.github.alexmodguy.alexscaves.server.config.BiomeContentConfig;
+import com.github.alexmodguy.alexscaves.server.level.biome.ACBiomeRegistry;
 import com.github.alexmodguy.alexscaves.server.level.structure.piece.AbyssalRuinsStructurePiece;
 import com.mojang.serialization.Codec;
 import net.minecraft.Util;
@@ -31,6 +33,9 @@ public class AbyssalRuinsStructure extends Structure {
     }
 
     public Optional<GenerationStub> findGenerationPoint(GenerationContext context) {
+        if (!BiomeContentConfig.isStructureAllowed(context.biomeSource(), ACBiomeRegistry.ABYSSAL_CHASM, ACStructureRegistry.ABYSSAL_RUINS.getId())) {
+            return Optional.empty();
+        }
         Rotation rotation = Rotation.getRandom(context.random());
         LevelHeightAccessor levelHeight = context.heightAccessor();
         int y = context.chunkGenerator().getBaseHeight(context.chunkPos().getMinBlockX(), context.chunkPos().getMinBlockZ(), Heightmap.Types.OCEAN_FLOOR_WG, levelHeight, context.randomState());

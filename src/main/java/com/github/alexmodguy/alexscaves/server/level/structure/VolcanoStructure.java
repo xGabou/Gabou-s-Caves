@@ -1,5 +1,6 @@
 package com.github.alexmodguy.alexscaves.server.level.structure;
 
+import com.github.alexmodguy.alexscaves.server.config.BiomeContentConfig;
 import com.github.alexmodguy.alexscaves.server.level.biome.ACBiomeRegistry;
 import com.github.alexmodguy.alexscaves.server.level.structure.piece.VolcanoStructurePiece;
 import com.github.alexmodguy.alexscaves.server.misc.ACMath;
@@ -30,6 +31,9 @@ public class VolcanoStructure extends Structure {
     }
 
     public Optional<GenerationStub> findGenerationPoint(GenerationContext context) {
+        if (!BiomeContentConfig.isStructureAllowed(context.biomeSource(), ACBiomeRegistry.PRIMORDIAL_CAVES, ACStructureRegistry.VOLCANO.getId())) {
+            return Optional.empty();
+        }
         int i = context.chunkPos().getBlockX(9);
         int j = context.chunkPos().getBlockZ(9);
 

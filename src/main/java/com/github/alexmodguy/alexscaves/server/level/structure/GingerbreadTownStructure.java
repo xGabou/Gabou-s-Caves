@@ -1,6 +1,7 @@
 package com.github.alexmodguy.alexscaves.server.level.structure;
 
 import com.github.alexmodguy.alexscaves.AlexsCaves;
+import com.github.alexmodguy.alexscaves.server.config.BiomeContentConfig;
 import com.github.alexmodguy.alexscaves.server.level.biome.ACBiomeRegistry;
 import com.github.alexmodguy.alexscaves.server.level.structure.piece.GingerbreadHousePiece;
 import com.github.alexmodguy.alexscaves.server.level.structure.piece.GingerbreadRoadPiece;
@@ -42,6 +43,9 @@ public class GingerbreadTownStructure extends Structure {
     }
 
     public Optional<GenerationStub> findGenerationPoint(GenerationContext context) {
+        if (!BiomeContentConfig.isStructureAllowed(context.biomeSource(), ACBiomeRegistry.CANDY_CAVITY, ACStructureRegistry.GINGERBREAD_TOWN.getId())) {
+            return Optional.empty();
+        }
         int i = context.chunkPos().getBlockX(9);
         int j = context.chunkPos().getBlockZ(9);
         for (Holder<Biome> holder : ACMath.getBiomesWithinAtY(context.biomeSource(), i, -30, j, 20, context.randomState().sampler())) {
